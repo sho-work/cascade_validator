@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-require 'active_model'
-require 'uri'
+require "spec_helper"
+require "active_model"
+require "uri"
 
 RSpec.describe ActiveModel::Validations::CompositeValidator do
   let(:child_klass) do
@@ -14,10 +14,10 @@ RSpec.describe ActiveModel::Validations::CompositeValidator do
       validates :age, presence: true, inclusion: { in: 18..65 }
     end
 
-    stub_const('Child', child_test_class)
+    stub_const("Child", child_test_class)
   end
 
-  context 'when the value is not an array' do
+  context "when the value is not an array" do
     let(:klass) do
       test_class = Class.new do
         attr_accessor :child
@@ -27,7 +27,7 @@ RSpec.describe ActiveModel::Validations::CompositeValidator do
         validates :child, composite: true
       end
 
-      stub_const('TestClass', test_class)
+      stub_const("TestClass", test_class)
     end
 
     let(:model) do
@@ -36,10 +36,10 @@ RSpec.describe ActiveModel::Validations::CompositeValidator do
       end
     end
 
-    it 'validates the value using valid? on the method passed to validates' do
+    it "validates the value using valid? on the method passed to validates" do
       aggregate_failures do
         expect(model.valid?).to be false
-        model.child.name = 'hoge'
+        model.child.name = "hoge"
         model.child.age = 18
         expect(model.valid?).to be true
         model.child.age = 11
@@ -48,7 +48,7 @@ RSpec.describe ActiveModel::Validations::CompositeValidator do
     end
   end
 
-  context 'when the value is nil' do
+  context "when the value is nil" do
     let(:klass) do
       test_class = Class.new do
         attr_accessor :child
@@ -58,7 +58,7 @@ RSpec.describe ActiveModel::Validations::CompositeValidator do
         validates :child, composite: true
       end
 
-      stub_const('TestClass', test_class)
+      stub_const("TestClass", test_class)
     end
 
     let(:model) do
@@ -69,12 +69,12 @@ RSpec.describe ActiveModel::Validations::CompositeValidator do
 
     before { model.child = nil }
 
-    it 'skips evaluation because the cascade validator is not triggered' do
+    it "skips evaluation because the cascade validator is not triggered" do
       expect(model.valid?).to be true
     end
   end
 
-  context 'when the value is an array' do
+  context "when the value is an array" do
     let(:klass) do
       children_test_class = Class.new do
         attr_accessor :children
@@ -84,7 +84,7 @@ RSpec.describe ActiveModel::Validations::CompositeValidator do
         validates :children, composite: true
       end
 
-      stub_const('TestClass', children_test_class)
+      stub_const("TestClass", children_test_class)
     end
 
     let(:model) do
@@ -93,16 +93,16 @@ RSpec.describe ActiveModel::Validations::CompositeValidator do
       end
     end
 
-    it 'validates each element in the array using valid? on the method passed to validates' do
+    it "validates each element in the array using valid? on the method passed to validates" do
       aggregate_failures do
         expect(model.valid?).to be false
-        model.children.first.name = 'hoge'
+        model.children.first.name = "hoge"
         model.children.first.age = 18
         expect(model.valid?).to be false
-        model.children[1].name = 'hoge'
+        model.children[1].name = "hoge"
         model.children[1].age = 18
         expect(model.valid?).to be false
-        model.children[2].name = 'hoge'
+        model.children[2].name = "hoge"
         model.children[2].age = 18
         expect(model.valid?).to be true
         model.children[1].age = 11
@@ -111,4 +111,3 @@ RSpec.describe ActiveModel::Validations::CompositeValidator do
     end
   end
 end
-

@@ -1,4 +1,4 @@
-require 'active_model/validations'
+require "active_model/validations"
 
 module ActiveModel
   module Validations
@@ -50,7 +50,7 @@ module ActiveModel
         delegate :options, to: :parent
 
         def associations
-          @associations ||= \
+          @associations ||=
             if value.class.include?(Enumerable) && !value.is_a?(Struct)
               value
             else
@@ -63,7 +63,7 @@ module ActiveModel
         end
 
         def invalid_associations
-          @invalid_associations ||= \
+          @invalid_associations ||=
             associations.select { _1.invalid?(context) }
         end
 

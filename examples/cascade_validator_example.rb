@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'active_model'
-require_relative '../lib/validators/cascade_validator'
+require "active_model"
+require_relative "../lib/validators/cascade_validator"
 
 # Example 1: Basic usage with user registration
 class User
@@ -46,8 +46,8 @@ end
 
 # Example usage
 puts "=== Example 1: User Registration ==="
-user = User.new(name: 'J', email: 'invalid-email')
-credentials = UserCredentials.new(password: 'short', password_confirmation: 'different')
+user = User.new(name: "J", email: "invalid-email")
+credentials = UserCredentials.new(password: "short", password_confirmation: "different")
 registration = UserRegistration.new(
   user: user,
   user_credentials: credentials,
@@ -64,8 +64,8 @@ else
 end
 
 puts "\n=== Example 2: Valid Registration ==="
-valid_user = User.new(name: 'John Doe', email: 'john@example.com')
-valid_credentials = UserCredentials.new(password: 'password123', password_confirmation: 'password123')
+valid_user = User.new(name: "John Doe", email: "john@example.com")
+valid_credentials = UserCredentials.new(password: "password123", password_confirmation: "password123")
 valid_registration = UserRegistration.new(
   user: valid_user,
   user_credentials: valid_credentials,
@@ -105,12 +105,12 @@ end
 
 puts "\n=== Example 3: Order with Multiple Items ==="
 items = [
-  OrderItem.new(product_name: 'Widget', quantity: 5, price: 10.99),
-  OrderItem.new(product_name: '', quantity: -1, price: 20.50),
-  OrderItem.new(product_name: 'Gadget', quantity: 2, price: -5)
+  OrderItem.new(product_name: "Widget", quantity: 5, price: 10.99),
+  OrderItem.new(product_name: "", quantity: -1, price: 20.50),
+  OrderItem.new(product_name: "Gadget", quantity: 2, price: -5)
 ]
 
-order = Order.new(items: items, customer_email: 'invalid@email')
+order = Order.new(items: items, customer_email: "invalid@email")
 
 if order.valid?
   puts "Order is valid!"
@@ -144,8 +144,8 @@ class ArticleForm
 end
 
 puts "\n=== Example 4: Context-based Validation ==="
-draft_article = Article.new(title: 'My Article', content: 'Short content', author: nil)
-form = ArticleForm.new(article: draft_article, category: 'Tech')
+draft_article = Article.new(title: "My Article", content: "Short content", author: nil)
+form = ArticleForm.new(article: draft_article, category: "Tech")
 
 if form.valid?
   puts "Article form is valid!"

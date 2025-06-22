@@ -1,0 +1,34 @@
+/.bundle/
+/.yardoc
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+
+# rspec failure tracking
+.rspec_status
+
+# Ignore Gemfile.lock for gems
+Gemfile.lock
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Ruby version files
+.ruby-version
+.ruby-gemset
+.rvmrc
+
+# Bundler
+.bundle
+vendor/bundle

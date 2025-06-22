@@ -1,13 +1,13 @@
-# CascadeValidator
+# CompositeValidator
 
-CascadeValidator is an ActiveModel validator that allows you to validate associated models and cascade their validation errors to the parent model. It supports both single associations and collections, making it perfect for form objects that aggregate multiple models.
+CompositeValidator is an ActiveModel validator that allows you to validate associated models and compose their validation errors to the parent model. It supports both single associations and collections, making it perfect for form objects that aggregate multiple models.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'cascade_validator'
+gem 'composite_validator'
 ```
 
 And then execute:
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install cascade_validator
+    $ gem install composite_validator
 
 ## Usage
 
@@ -57,8 +57,8 @@ class UserRegistration
 
   attr_accessor :user, :user_credentials
 
-  validates :user, cascade: true
-  validates :user_credentials, cascade: true
+  validates :user, composite: true
+  validates :user_credentials, composite: true
 end
 
 # Usage
@@ -75,7 +75,7 @@ registration.errors[:user_credentials]
 
 ### Working with Collections
 
-CascadeValidator automatically handles collections of objects:
+CompositeValidator automatically handles collections of objects:
 
 ```ruby
 class OrderItem
@@ -94,7 +94,7 @@ class Order
 
   attr_accessor :items
 
-  validates :items, cascade: true
+  validates :items, composite: true
 end
 
 # Usage
@@ -130,7 +130,7 @@ class ArticleForm
 
   attr_accessor :article
 
-  validates :article, cascade: { context: :publish }
+  validates :article, composite: { context: :publish }
 end
 
 # Usage
@@ -158,7 +158,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/yourusername/cascade_validator.
+Bug reports and pull requests are welcome on GitHub at https://github.com/sho-work/composite_validator.
 
 ## License
 

@@ -18,14 +18,15 @@ Gem::Specification.new do |spec|
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/sho-work/composite_validator"
   spec.metadata["changelog_uri"] = "https://github.com/sho-work/composite_validator/blob/main/CHANGELOG.md"
+  spec.metadata["rubygems_mfa_required"] = "true"
 
   # Specify which files should be added to the gem when it is released.
   spec.files = Dir.glob([
-    "lib/**/*",
-    "LICENSE.txt",
-    "README.md",
-    "CHANGELOG.md"
-  ])
+                          "lib/**/*",
+                          "LICENSE.txt",
+                          "README.md",
+                          "CHANGELOG.md"
+                        ])
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]

@@ -32,3 +32,9 @@ Thumbs.db
 # Bundler
 .bundle
 vendor/bundle
+
+# Built gems
+*.gem
+
+# GitHub Actions
+.github/workflows/*.log
